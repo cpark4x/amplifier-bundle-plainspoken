@@ -1,0 +1,8 @@
+bundle:
+  name: plainspoken-always-on
+  version: 1.0.0
+  description: Always-on plain-language guidance — no manual toggle, survives other modes
+
+context:
+  include:
+    - plainspoken:context/plain-talk.md
