@@ -20,7 +20,7 @@ The AI:
 ## Install
 
 ```bash
-amplifier bundle add git+https://github.com/YOURNAME/amplifier-bundle-plainspoken@main
+amplifier bundle add git+https://github.com/cpark4x/amplifier-bundle-plainspoken@main
 ```
 
 To have `/plain` available in every session on every machine, register it globally:
@@ -28,7 +28,7 @@ To have `/plain` available in every session on every machine, register it global
 ```yaml
 # ~/.amplifier/settings.yaml
 bundles:
-  - source: git+https://github.com/YOURNAME/amplifier-bundle-plainspoken@main
+  - source: git+https://github.com/cpark4x/amplifier-bundle-plainspoken@main
 ```
 
 ## Two ways to use it

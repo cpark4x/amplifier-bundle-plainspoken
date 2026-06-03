@@ -27,7 +27,7 @@ workflow mode is active:
 ```yaml
 includes:
   - bundle: git+https://github.com/microsoft/amplifier-foundation@main
-  - bundle: git+https://github.com/YOURNAME/amplifier-bundle-plainspoken@main
+  - bundle: git+https://github.com/cpark4x/amplifier-bundle-plainspoken@main
   - bundle: plainspoken:behaviors/plainspoken-always-on
 ```
 
