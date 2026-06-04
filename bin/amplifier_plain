@@ -10,30 +10,32 @@
 #   amplifier_plain                 # start a plain-talk session
 #   amplifier_plain "your prompt"   # pass a prompt straight through
 #
-# Any arguments are forwarded to amplifier unchanged.
+# Any arguments are forwarded to `amplifier run` unchanged.
 
 set -euo pipefail
 
+BUNDLE_NAME="plainspoken-session"
 CONFIG_DIR="${HOME}/.amplifier"
-BUNDLE_FILE="${CONFIG_DIR}/plainspoken-session.md"
+BUNDLE_DIR="${CONFIG_DIR}/${BUNDLE_NAME}"
+BUNDLE_FILE="${BUNDLE_DIR}/bundle.md"
 
-# Make sure amplifier is actually installed before we do anything.
+# Amplifier has to be installed first — this is a thin wrapper around it.
 if ! command -v amplifier >/dev/null 2>&1; then
   echo "amplifier_plain: 'amplifier' is not installed or not on your PATH." >&2
   echo "Install Amplifier first, then run amplifier_plain again." >&2
   exit 1
 fi
 
-mkdir -p "${CONFIG_DIR}"
-
 # Write the composition once: a normal foundation session, plus Plainspoken
 # always-on. Self-contained — everything resolves from git, no clone needed.
+mkdir -p "${BUNDLE_DIR}"
 if [ ! -f "${BUNDLE_FILE}" ]; then
   cat > "${BUNDLE_FILE}" <<'EOF'
 ---
 bundle:
   name: plainspoken-session
   version: 1.0.0
+  description: Foundation with Plainspoken always-on
 includes:
   - bundle: git+https://github.com/microsoft/amplifier-foundation@main
   - bundle: git+https://github.com/cpark4x/amplifier-bundle-plainspoken@main
@@ -42,4 +44,10 @@ includes:
 EOF
 fi
 
-exec amplifier --bundle "${BUNDLE_FILE}" "$@"
+# Register the bundle in Amplifier's registry the first time. Amplifier launches
+# bundles by name, not by file path, so it must be registered before `run`.
+if ! amplifier bundle list 2>/dev/null | grep -q "${BUNDLE_NAME}"; then
+  amplifier bundle add "file://${BUNDLE_DIR}" --name "${BUNDLE_NAME}" >/dev/null
+fi
+
+exec amplifier run --bundle "${BUNDLE_NAME}" "$@"
