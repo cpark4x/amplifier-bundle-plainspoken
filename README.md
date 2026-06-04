@@ -44,11 +44,11 @@ includes:
   - bundle: plainspoken:behaviors/plainspoken-always-on
 ```
 
-- **One word, every time** — for anyone who just wants plain answers and doesn't want to
-  learn the setup, the [`amplifier_plain`](bin/amplifier_plain) command starts a session with
-  plain talk already on. They type `amplifier_plain` instead of `amplifier`. It stays on for
-  the whole session, even while other modes run. Drop the file anywhere on your PATH and it's
-  ready — the first run downloads what it needs, then it's quick.
+- **One word, every time** — the simplest path, for anyone who just wants plain answers. The
+  [`amplifier_plain`](bin/amplifier_plain) command starts a session with plain talk already on:
+  you type `amplifier_plain` instead of `amplifier`, and it stays on the whole session, even
+  while other modes run. Drop the file anywhere on your PATH and it's ready. The first run is a
+  little slow while it fetches what it needs; after that it's quick.
 
 ## What it won't do
 
@@ -68,15 +68,14 @@ npx skills add cpark4x/amplifier-bundle-plainspoken
 ```
 
 On Cursor and Copilot it can run on every turn; on Codex and Claude Code you call it up by name.
-One honest catch: the rules now live in two places — the Amplifier file and the portable one — so
-a change to one needs the same change to the other.
 
 ## Make it yours
 
-Every rule lives in one readable file: [`context/plain-talk.md`](context/plain-talk.md). The
-switch and the always-on version both pull from it, so edit that one file and both update.
-Want your own spin without forking? Drop a `~/.amplifier/modes/plain.md` in your home folder
-and yours wins.
+Inside Amplifier, every rule lives in one readable file — [`context/plain-talk.md`](context/plain-talk.md).
+Both the `/plain` switch and the always-on version pull from it, so edit that one file and they
+both update. (The portable skill keeps its own copy of the same rules, so if you change one,
+change the other.) Want your own spin without forking? Drop a `~/.amplifier/modes/plain.md` in
+your home folder and yours wins.
 
 ## Built by
 
