@@ -30,7 +30,7 @@ amplifier bundle add git+https://github.com/cpark4x/amplifier-bundle-plainspoken
 Start your next session and type `/plain`. That's it — the AI talks plainly until you type
 `/mode off`. Takes about thirty seconds to set up.
 
-## Two ways to use it
+## Three ways to use it
 
 - **On demand** — `/plain` turns it on, `/mode off` turns it off. Best for everyday chats.
   Only one mode runs at a time, so a workflow mode will bump it.
@@ -44,12 +44,32 @@ includes:
   - bundle: plainspoken:behaviors/plainspoken-always-on
 ```
 
+- **One word, every time** — for anyone who just wants plain answers and doesn't want to
+  learn the setup, the [`amplifier_plain`](bin/amplifier_plain) command starts a session with
+  plain talk already on. They type `amplifier_plain` instead of `amplifier`. It stays on for
+  the whole session, even while other modes run. Drop the file anywhere on your PATH and it's
+  ready — the first run downloads what it needs, then it's quick.
+
 ## What it won't do
 
 It won't dumb things down — say **"go deep"** any time and you get the full technical detail
 on demand. It won't soften real warnings — anything risky or irreversible still gets a blunt
 heads-up first. And it's a strong nudge, not a guarantee: it keeps the rules in front of the
 AI on every turn, which makes slipping rare, not impossible.
+
+## Beyond Amplifier
+
+The same rules ship as a portable skill in [`skills/plainspoken`](skills/plainspoken), so you can
+get plain talk in other assistants too — Cursor, GitHub Copilot, Codex, Gemini CLI. Install it
+with the open Agent Skills tool:
+
+```bash
+npx skills add cpark4x/amplifier-bundle-plainspoken
+```
+
+On Cursor and Copilot it can run on every turn; on Codex and Claude Code you call it up by name.
+One honest catch: the rules now live in two places — the Amplifier file and the portable one — so
+a change to one needs the same change to the other.
 
 ## Make it yours
 
