@@ -1,0 +1,45 @@
+#!/usr/bin/env bash
+#
+# amplifier_plain — launch Amplifier with Plainspoken always-on.
+#
+# Plain-language style rides underneath every turn and survives other modes,
+# so the assistant talks like a smart friend for the whole session. Say
+# "go deep" any time to unlock full technical detail.
+#
+# Usage:
+#   amplifier_plain                 # start a plain-talk session
+#   amplifier_plain "your prompt"   # pass a prompt straight through
+#
+# Any arguments are forwarded to amplifier unchanged.
+
+set -euo pipefail
+
+CONFIG_DIR="${HOME}/.amplifier"
+BUNDLE_FILE="${CONFIG_DIR}/plainspoken-session.md"
+
+# Make sure amplifier is actually installed before we do anything.
+if ! command -v amplifier >/dev/null 2>&1; then
+  echo "amplifier_plain: 'amplifier' is not installed or not on your PATH." >&2
+  echo "Install Amplifier first, then run amplifier_plain again." >&2
+  exit 1
+fi
+
+mkdir -p "${CONFIG_DIR}"
+
+# Write the composition once: a normal foundation session, plus Plainspoken
+# always-on. Self-contained — everything resolves from git, no clone needed.
+if [ ! -f "${BUNDLE_FILE}" ]; then
+  cat > "${BUNDLE_FILE}" <<'EOF'
+---
+bundle:
+  name: plainspoken-session
+  version: 1.0.0
+includes:
+  - bundle: git+https://github.com/microsoft/amplifier-foundation@main
+  - bundle: git+https://github.com/cpark4x/amplifier-bundle-plainspoken@main
+  - bundle: plainspoken:behaviors/plainspoken-always-on
+---
+EOF
+fi
+
+exec amplifier --bundle "${BUNDLE_FILE}" "$@"

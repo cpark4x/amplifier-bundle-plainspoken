@@ -30,7 +30,7 @@ amplifier bundle add git+https://github.com/cpark4x/amplifier-bundle-plainspoken
 Start your next session and type `/plain`. That's it — the AI talks plainly until you type
 `/mode off`. Takes about thirty seconds to set up.
 
-## Two ways to use it
+## Three ways to use it
 
 - **On demand** — `/plain` turns it on, `/mode off` turns it off. Best for everyday chats.
   Only one mode runs at a time, so a workflow mode will bump it.
@@ -44,6 +44,12 @@ includes:
   - bundle: plainspoken:behaviors/plainspoken-always-on
 ```
 
+- **One word, every time** — the simplest path, for anyone who just wants plain answers. The
+  [`amplifier_plain`](bin/amplifier_plain) command starts a session with plain talk already on:
+  you type `amplifier_plain` instead of `amplifier`, and it stays on the whole session, even
+  while other modes run. Drop the file anywhere on your PATH and it's ready. The first run is a
+  little slow while it fetches what it needs; after that it's quick.
+
 ## What it won't do
 
 It won't dumb things down — say **"go deep"** any time and you get the full technical detail
@@ -51,12 +57,25 @@ on demand. It won't soften real warnings — anything risky or irreversible stil
 heads-up first. And it's a strong nudge, not a guarantee: it keeps the rules in front of the
 AI on every turn, which makes slipping rare, not impossible.
 
+## Beyond Amplifier
+
+The same rules ship as a portable skill in [`skills/plainspoken`](skills/plainspoken), so you can
+get plain talk in other assistants too — Cursor, GitHub Copilot, Codex, Gemini CLI. Install it
+with the open Agent Skills tool:
+
+```bash
+npx skills add cpark4x/amplifier-bundle-plainspoken
+```
+
+On Cursor and Copilot it can run on every turn; on Codex and Claude Code you call it up by name.
+
 ## Make it yours
 
-Every rule lives in one readable file: [`context/plain-talk.md`](context/plain-talk.md). The
-switch and the always-on version both pull from it, so edit that one file and both update.
-Want your own spin without forking? Drop a `~/.amplifier/modes/plain.md` in your home folder
-and yours wins.
+Inside Amplifier, every rule lives in one readable file — [`context/plain-talk.md`](context/plain-talk.md).
+Both the `/plain` switch and the always-on version pull from it, so edit that one file and they
+both update. (The portable skill keeps its own copy of the same rules, so if you change one,
+change the other.) Want your own spin without forking? Drop a `~/.amplifier/modes/plain.md` in
+your home folder and yours wins.
 
 ## Built by
 
