@@ -44,11 +44,25 @@ includes:
   - bundle: plainspoken:behaviors/plainspoken-always-on
 ```
 
-- **One word, every time** — the simplest path, for anyone who just wants plain answers. The
-  [`amplifier_plain`](bin/amplifier_plain) command starts a session with plain talk already on:
-  you type `amplifier_plain` instead of `amplifier`, and it stays on the whole session, even
-  while other modes run. Drop the file anywhere on your PATH and it's ready. The first run is a
-  little slow while it fetches what it needs; after that it's quick.
+- **One word, every time** — the simplest path, for anyone who just wants plain answers.
+  Install it with a single line:
+
+  ```bash
+  curl -fsSL https://raw.githubusercontent.com/cpark4x/amplifier-bundle-plainspoken/main/install.sh | bash
+  ```
+
+  Then type `amplifier_plain` instead of `amplifier` to start a session with plain talk already
+  on — it stays on the whole session, even while other modes run. The first run is a little slow
+  while it sets up; after that it's quick. (You'll need Amplifier installed first; the installer
+  checks and tells you if it's missing.)
+
+  Rather read the script before running it? Download it, look it over, then run it:
+
+  ```bash
+  curl -fsSL https://raw.githubusercontent.com/cpark4x/amplifier-bundle-plainspoken/main/install.sh -o install.sh
+  less install.sh
+  bash install.sh
+  ```
 
 ## What it won't do
 
